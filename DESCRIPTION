@@ -1,12 +1,16 @@
 Package: shinydlplot
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Add a Download Button to a Shiny Plot(ly)
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Alex Pickering
+Maintainer: Alex Pickering <alexpickering@gmail.com>
+Description: Add a download button to a shiny plot(ly) to allow users to download the dataset used for a plot
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0
+Imports:
+  shiny (>= 1.4.0.2),
+  shinyjs (>= 1.1),
+  plotly (>= 4.9.2),
+  htmlwidgets (>= 1.5.1)
