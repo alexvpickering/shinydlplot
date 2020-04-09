@@ -27,6 +27,29 @@ height is computed with HTML/CSS.}
 \description{
 UI for plotly with download data button in modebar
 }
+\examples{
+library(shiny)
+library(shinyjs)
+library(shinydlplot)
+library(plotly)
+ui <- fluidPage(
+  useShinyjs(),
+  downloadablePlotlyUI(id = 'iris')
+)
+server <- function(input, output, session) {
+
+  plot <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
+
+  callModule(downloadablePlotly,
+             id = 'iris',
+             plot = plot,
+             filename = 'iris.csv',
+             content = function(file) {write.csv(iris, file)})
+}
+
+shinyApp(ui, server)
+
+}
 \seealso{
 \code{\link[shiny]{NS}}, \code{\link{downloadablePlotly}}
 }

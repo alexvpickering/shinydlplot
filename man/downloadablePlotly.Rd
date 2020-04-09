@@ -17,7 +17,7 @@ downloadablePlotly(
 \arguments{
 \item{input}{output, session standard \code{shiny} boilerplate.}
 
-\item{plot}{Object of class \code{'plotly'} or function that generates one.}
+\item{plot}{Object of class \code{'plotly'} or a function or reactive that generates one.}
 
 \item{filename}{A string of the filename, including extension, that the
 user's web browser should default to when downloading the file; or a

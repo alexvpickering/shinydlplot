@@ -5,6 +5,30 @@
 #' @export
 #' @seealso \code{\link[shiny]{NS}}, \code{\link{downloadablePlotly}}
 #'
+#' @examples
+#' library(shiny)
+#' library(shinyjs)
+#' library(shinydlplot)
+#' library(plotly)
+
+#' ui <- fluidPage(
+#'   useShinyjs(),
+#'   downloadablePlotlyUI(id = 'iris')
+#' )
+
+#' server <- function(input, output, session) {
+#'
+#'   plot <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
+#'
+#'   callModule(downloadablePlotly,
+#'              id = 'iris',
+#'              plot = plot,
+#'              filename = 'iris.csv',
+#'              content = function(file) {write.csv(iris, file)})
+#' }
+#'
+#' shinyApp(ui, server)
+#'
 downloadablePlotlyUI <- function(id, width = '100%', height = 'auto', inline = FALSE) {
   ns <- shiny::NS(id)
   shiny::tagList(
@@ -15,7 +39,7 @@ downloadablePlotlyUI <- function(id, width = '100%', height = 'auto', inline = F
 
 #' Server-side logic for plotly with download data button in modebar
 #'
-#' @param plot Object of class \code{'plotly'} or function that generates one.
+#' @param plot Object of class \code{'plotly'} or a function or reactive that generates one.
 #' @param title Text for plotly tooltip.
 #' @inheritParams hiddenDownload
 #' @seealso \code{\link{downloadablePlotlyUI}}
@@ -29,12 +53,9 @@ downloadablePlotly <- function(input, output, session, plot, filename, content, 
                     filename = filename,
                     content = content)
 
-  # make plot a function if it isn't one
+  # make plot a reactive
   plotly_fun <- shiny::reactive({
-    if ('plotly' %in% class(plot)) plot <- plot
-    else if ('function' %in% class(plot)) plot <- plot()
-    if (!'plotly' %in% class(plot)) stop('plot must either be a plotly object or a function that returns one.')
-
+    if (is(plot, c('function', 'reactive'))) plot <- plot()
     return(plot)
   })
 
