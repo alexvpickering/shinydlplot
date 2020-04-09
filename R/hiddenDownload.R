@@ -5,8 +5,8 @@
 #' @keywords internal
 #'
 hiddenDownloadUI <- function(id) {
-  ns <- shiny::NS(id)
-  shiny::downloadLink(ns("downloadData"), '')
+  ns <- NS(id)
+  downloadLink(ns("downloadData"), '')
 }
 
 
@@ -20,11 +20,11 @@ hiddenDownloadUI <- function(id) {
 #' @keywords internal
 hiddenDownload <- function(input, output, session, check, filename, content) {
 
-  shiny::observeEvent(check(), {
+  observeEvent(check(), {
     shinyjs::runjs(paste0("$('#", session$ns('downloadData'), "')[0].click();"))
   })
 
-  output$downloadData <- shiny::downloadHandler(
+  output$downloadData <- downloadHandler(
     filename = filename,
     content = content
   )

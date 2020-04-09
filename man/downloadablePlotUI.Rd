@@ -4,10 +4,17 @@
 \alias{downloadablePlotUI}
 \title{UI for plot with download data button}
 \usage{
-downloadablePlotUI(id, ...)
+downloadablePlotUI(
+  id,
+  title = "Download plot data",
+  width = "100\%",
+  height = "400px"
+)
 }
 \arguments{
 \item{id}{id string that gets namespaced by \code{shiny::NS}.}
+
+\item{title}{Text to display on hover of download button.}
 
 \item{...}{Named arguments passed to \code{plotOutput}.}
 }

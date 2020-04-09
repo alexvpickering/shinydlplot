@@ -30,8 +30,8 @@
 #' shinyApp(ui, server)
 #'
 downloadablePlotlyUI <- function(id, width = '100%', height = 'auto', inline = FALSE) {
-  ns <- shiny::NS(id)
-  shiny::tagList(
+  ns <- NS(id)
+  tagList(
     hiddenDownloadUI(ns('dl_plotly')),
     plotly::plotlyOutput(ns('plotly'), width = width, height = height, inline = inline)
   )
@@ -48,20 +48,20 @@ downloadablePlotlyUI <- function(id, width = '100%', height = 'auto', inline = F
 downloadablePlotly <- function(input, output, session, plot, filename, content, title = 'Download plot data') {
 
   # hidden download link
-  shiny::callModule(hiddenDownload, 'dl_plotly',
+  callModule(hiddenDownload, 'dl_plotly',
                     check = reactive(input$dl_data),
                     filename = filename,
                     content = content)
 
   # make plot a reactive
-  plotly_fun <- shiny::reactive({
+  plotly_fun <- reactive({
     if (is(plot, c('function', 'reactive'))) plot <- plot()
     return(plot)
   })
 
 
   # wrap to avoid shinytest errors
-  output$plotly <- shiny::snapshotPreprocessOutput(
+  output$plotly <- snapshotPreprocessOutput(
     plotly::renderPlotly({
 
       # id of ns_val to invalidate on click

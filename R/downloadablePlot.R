@@ -1,3 +1,6 @@
+#' @import shiny
+NULL
+
 #' Server-side logic for plot with download data button
 #'
 #' Download button appears on hover in top right.
@@ -37,15 +40,14 @@
 downloadablePlot <- function(input, output, session, plot, filename, content, ...) {
 
 
-
   # make plot a reactive
-  plot_fun <- shiny::reactive({
+  plot_fun <- reactive({
     if (is(plot, c('function', 'reactive'))) plot <- plot()
     return(plot)
   })
 
   # hide download button if no plot or content
-  downloadable <- shiny::reactive({
+  downloadable <- reactive({
     exists('content') & isTruthy(plot_fun())
   })
 
@@ -55,12 +57,12 @@ downloadablePlot <- function(input, output, session, plot, filename, content, ..
 
 
   # click download
-  output$download <- shiny::downloadHandler(
+  output$download <- downloadHandler(
     filename = filename,
     content = content
   )
 
-  output$dl_plot <- shiny::renderPlot({
+  output$dl_plot <- renderPlot({
     plot_fun()
   }, ...)
 }
@@ -74,39 +76,38 @@ downloadablePlot <- function(input, output, session, plot, filename, content, ..
 #' @seealso \code{\link[shiny]{NS}}, \code{\link{downloadablePlot}}, \code{\link{plotOutput}}
 #'
 #'
-downloadablePlotUI <- function(id, title = 'Download plot data', ...) {
+downloadablePlotUI <- function(id, title = 'Download plot data', width = '100%', height = '400px') {
   ns <- NS(id)
 
-  # grab css
-  dlplot_css <- .get_script("dlplot.css", "css")
+  addResourcePath(
+    prefix = 'dlplot',
+    directoryPath = system.file('dlplot', package='shinydlplot'))
 
-  shiny::withTags({
-    shiny::tagList(
-      shiny::singleton(tags$head(tags$style(HTML(dlplot_css)))),
-      div(class = 'downloadable-plot', id = ns('plot_container'),
-          div(class = 'clearfix',
-              span(
-                id = ns('download_container'), class = 'pull-right downloadable-plot-btn',
-                shiny::downloadButton(ns('download'), label = NULL, icon = icon('download', 'fa-fw')),
-                shinyBS::bsTooltip(
-                  ns('download'),
-                  title,
-                  placement = 'left',
-                  options = list(
-                    container = 'body',
-                    template = '<div class="tooltip plot" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
-                  ))
-              )
-          ),
-          shiny::plotOutput(ns('dl_plot'), ...)
 
-      )
-    )
-  })
-}
 
-#In order to load the javascript and css we can first load it to a character var
-.get_script <- function(title, type){
-  fname <- system.file(type, title, package = "shinydlplot")
-  readChar(fname, file.info(fname)$size)
+  tagList(
+    singleton(tags$head(
+      tags$link(rel = 'stylesheet',
+           type = 'text/css',
+           href = 'dlplot/dlplot.css')
+    )),
+    div(class = 'downloadable-plot', id = ns('plot_container'),
+        div(class = 'clearfix',
+            span(
+              id = ns('download_container'), class = 'pull-right downloadable-plot-btn',
+              downloadButton(ns('download'), label = NULL, icon = icon('download', 'fa-fw')),
+            )
+        ),
+        plotOutput(ns('dl_plot'), width = width, height = height)
+
+    ),
+    shinyBS::bsTooltip(
+      ns('download'),
+      title,
+      placement = 'left',
+      options = list(
+        container = 'body',
+        template = '<div class="tooltip plot" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+      ))
+  )
 }
