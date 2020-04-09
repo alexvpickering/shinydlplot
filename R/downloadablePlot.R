@@ -68,12 +68,13 @@ downloadablePlot <- function(input, output, session, plot, filename, content, ..
 #' UI for plot with download data button
 #'
 #' @param id id string that gets namespaced by \code{shiny::NS}.
+#' @param title Text to display on hover of download button.
 #' @param ... Named arguments passed to \code{plotOutput}.
 #' @export
 #' @seealso \code{\link[shiny]{NS}}, \code{\link{downloadablePlot}}, \code{\link{plotOutput}}
 #'
 #'
-downloadablePlotUI <- function(id, ...) {
+downloadablePlotUI <- function(id, title = 'Download plot data', ...) {
   ns <- NS(id)
 
   # grab css
@@ -89,7 +90,7 @@ downloadablePlotUI <- function(id, ...) {
                 shiny::downloadButton(ns('download'), label = NULL, icon = icon('download', 'fa-fw')),
                 shinyBS::bsTooltip(
                   ns('download'),
-                  'Download plot data',
+                  title,
                   placement = 'left',
                   options = list(
                     container = 'body',
