@@ -64,3 +64,5 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 ```
+
+![downloadable plot](downloadable-plot.png)
