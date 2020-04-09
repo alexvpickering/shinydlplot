@@ -19,7 +19,7 @@ library(plotly)
 
 ui <- fluidPage(
   useShinyjs(),
-  downloadablePlotlyUI(id = 'iris')
+  downloadablePlotlyUI(id = 'iris_plotly')
 )
 
 server <- function(input, output, session) {
@@ -27,7 +27,7 @@ server <- function(input, output, session) {
   plot <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
   
   callModule(downloadablePlotly, 
-             id = 'iris', 
+             id = 'iris_plotly', 
              plot = plot, 
              filename = 'iris.csv', 
              content = function(file) {write.csv(iris, file)})
