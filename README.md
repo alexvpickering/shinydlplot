@@ -4,7 +4,7 @@
 ### Installation
 
 ```R
-remotes::install_github('hms-dbmi/shinydlplot)
+remotes::install_github('alexvpickering/shinydlplot)
 ```
 
 ### Usage
