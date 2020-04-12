@@ -11,7 +11,7 @@ LazyData: true
 RoxygenNote: 7.1.0
 Imports:
   shinyBS (>= 0.61),
-  shiny (>= 1.4.0.2),
+  shiny (>= 1.4.0),
   shinyjs (>= 1.1),
   plotly (>= 4.9.2),
   htmlwidgets (>= 1.5.1)

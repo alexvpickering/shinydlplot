@@ -80,8 +80,8 @@ downloadablePlotUI <- function(id, title = 'Download plot data', width = '100%',
   ns <- NS(id)
 
   addResourcePath(
-    prefix = 'dlplot',
-    directoryPath = system.file('dlplot', package='shinydlplot'))
+    prefix = 'css',
+    directoryPath = system.file('css', package='shinydlplot'))
 
 
 
@@ -89,7 +89,7 @@ downloadablePlotUI <- function(id, title = 'Download plot data', width = '100%',
     singleton(tags$head(
       tags$link(rel = 'stylesheet',
            type = 'text/css',
-           href = 'dlplot/dlplot.css')
+           href = 'css/shinydlplot.css')
     )),
     div(class = 'downloadable-plot', id = ns('plot_container'),
         div(class = 'clearfix',
