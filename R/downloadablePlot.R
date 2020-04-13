@@ -79,35 +79,25 @@ downloadablePlot <- function(input, output, session, plot, filename, content, ..
 downloadablePlotUI <- function(id, title = 'Download plot data', width = '100%', height = '400px') {
   ns <- NS(id)
 
-  addResourcePath(
-    prefix = 'css',
-    directoryPath = system.file('css', package='shinydlplot'))
 
+  res <- div(class = 'downloadable-plot', id = ns('plot_container'),
+      div(class = 'clearfix',
+          span(
+            id = ns('download_container'), class = 'pull-right downloadable-plot-btn',
+            downloadButton(ns('download'), label = NULL, icon = icon('download', 'fa-fw')),
+          )
+      ),
+      plotOutput(ns('dl_plot'), width = width, height = height),
+      shinyBS::bsTooltip(
+        ns('download'),
+        title,
+        placement = 'left',
+        options = list(
+          container = 'body',
+          template = '<div class="tooltip plot" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+        ))
 
-
-  tagList(
-    singleton(tags$head(
-      tags$link(rel = 'stylesheet',
-           type = 'text/css',
-           href = 'css/shinydlplot.css')
-    )),
-    div(class = 'downloadable-plot', id = ns('plot_container'),
-        div(class = 'clearfix',
-            span(
-              id = ns('download_container'), class = 'pull-right downloadable-plot-btn',
-              downloadButton(ns('download'), label = NULL, icon = icon('download', 'fa-fw')),
-            )
-        ),
-        plotOutput(ns('dl_plot'), width = width, height = height)
-
-    ),
-    shinyBS::bsTooltip(
-      ns('download'),
-      title,
-      placement = 'left',
-      options = list(
-        container = 'body',
-        template = '<div class="tooltip plot" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
-      ))
   )
+
+  with_deps(res)
 }

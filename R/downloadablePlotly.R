@@ -31,10 +31,12 @@
 #'
 downloadablePlotlyUI <- function(id, width = '100%', height = 'auto', inline = FALSE) {
   ns <- NS(id)
-  tagList(
+  res <- tagList(
     hiddenDownloadUI(ns('dl_plotly')),
     plotly::plotlyOutput(ns('plotly'), width = width, height = height, inline = inline)
   )
+
+  with_deps(res)
 }
 
 #' Server-side logic for plotly with download data button in modebar
