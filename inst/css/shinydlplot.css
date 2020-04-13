@@ -1,36 +1,31 @@
 .downloadable-plot:hover .visible-plot.downloadable-plot-btn,
-.hide-btn-container:hover button.dt-button.buttons-collection,
 .hide-btn-container .hide-btn  {
   animation: 0.2s fadeIn;
   animation-fill-mode: forwards;
 }
 
 .downloadable-plot-btn,
-button.dt-button.buttons-collection,
 .hide-btn {
   animation: 0.2s fadeOut;
   animation-fill-mode: forwards;
 }
 
 .downloadable-plot-btn i,
-button.dt-button.buttons-collection i,
 .hide-btn i {
   color: rgba(68, 68, 68, 0.3);
 }
 
 .downloadable-plot-btn:hover i,
-button.dt-button.buttons-collection:hover i,
 .hide-btn:hover i {
   color: rgba(68, 68, 68, 0.7);
 }
 
 .downloadable-plot-btn .btn,
-button.dt-button.buttons-collection,
 .hide-btn {
   background-color: transparent !important;
   outline: none !important;
   box-shadow: none !important;
-  border: none;
+  border: none !important;
   padding: 3px 4px;
   display: none;
 }

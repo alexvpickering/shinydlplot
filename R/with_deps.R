@@ -1,11 +1,12 @@
+.onLoad <- function(...) {
+  # Create link to javascript and css files for package
+  shiny::addResourcePath("sdp", system.file("css", package="shinydlplot"))
+}
+
+
 # attach css and shinyBS dependencies
 with_deps <- function(markup) {
 
-  addResourcePath(
-    prefix = 'css',
-    directoryPath = system.file('css', package='shinydlplot'))
-
-  addResourcePath("sbs", system.file("www", package="shinyBS"))
 
   shinyBSDep <- htmltools::htmlDependency(
     "shinyBS",
@@ -14,13 +15,16 @@ with_deps <- function(markup) {
     script = "shinyBS.js",
     stylesheet = "shinyBS.css")
 
+  shinydlplotDep <- htmltools::htmlDependency(
+    'shinydlplot',
+    packageVersion('shinydlplot'),
+    src = c("href" = "sdp"),
+    stylesheet = "shinydlplot.css")
+
   tagList(
-    singleton(tags$head(
-      tags$link(rel = 'stylesheet',
-                type = 'text/css',
-                href = 'css/shinydlplot.css'),
-      shinyBSDep)
-    ),
+      bootstrapLib(),
+      shinyBSDep,
+      shinydlplotDep,
     markup
   )
 }
