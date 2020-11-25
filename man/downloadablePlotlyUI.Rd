@@ -47,7 +47,7 @@ server <- function(input, output, session) {
              content = function(file) {write.csv(iris, file)})
 }
 
-shinyApp(ui, server)
+\dontrun{shinyApp(ui, server)}
 
 }
 \seealso{

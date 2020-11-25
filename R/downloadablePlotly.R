@@ -27,7 +27,7 @@
 #'              content = function(file) {write.csv(iris, file)})
 #' }
 #'
-#' shinyApp(ui, server)
+#' \dontrun{shinyApp(ui, server)}
 #'
 downloadablePlotlyUI <- function(id, width = '100%', height = 'auto', inline = FALSE) {
   ns <- NS(id)
@@ -57,7 +57,7 @@ downloadablePlotly <- function(input, output, session, plot, filename, content, 
 
   # make plot a reactive
   plotly_fun <- reactive({
-    if (is(plot, c('function', 'reactive'))) plot <- plot()
+    if (methods::is(plot, c('function', 'reactive'))) plot <- plot()
     return(plot)
   })
 
@@ -87,8 +87,7 @@ downloadablePlotly <- function(input, output, session, plot, filename, content, 
         )
       )
 
-      plotly_fun() %>%
-        plotly::config(modeBarButtonsToAdd = list(dl_data_button))
+      plotly::config(plotly_fun(), modeBarButtonsToAdd = list(dl_data_button))
     }),
     function(value) { session$ns('downloadable_plotly') }
   )

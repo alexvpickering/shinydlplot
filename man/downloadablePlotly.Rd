@@ -15,7 +15,11 @@ downloadablePlotly(
 )
 }
 \arguments{
-\item{input}{output, session standard \code{shiny} boilerplate.}
+\item{input}{standard \code{shiny} boilerplate.}
+
+\item{output}{standard \code{shiny} boilerplate.}
+
+\item{session}{standard \code{shiny} boilerplate.}
 
 \item{plot}{Object of class \code{'plotly'} or a function or reactive that generates one.}
 

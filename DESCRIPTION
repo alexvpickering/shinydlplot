@@ -1,17 +1,25 @@
 Package: shinydlplot
 Type: Package
-Title: Add a Download Button to a Shiny Plot(ly)
-Version: 0.1.0
+Title: Add a Download Button to a Shiny Plot or Plotly
+Version: 0.1.1
 Author: Alex Pickering
 Maintainer: Alex Pickering <alexpickering@gmail.com>
-Description: Add a download button to a shiny plot(ly) to allow users to download the dataset used for a plot
-License: MIT
+Description: Add a download button to a shiny plot or plotly that appears when
+  the plot is hovered. A tooltip, styled to resemble plotly buttons, is displayed 
+  on hover of the download button. The download button can be used to allow users
+  to download the dataset used for a plot.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
+Suggests:
+  ggplot2 (>= 3.3.2)
 Imports:
   shinyBS (>= 0.61),
   shiny (>= 1.4.0),
   shinyjs (>= 1.1),
   plotly (>= 4.9.2),
-  htmlwidgets (>= 1.5.1)
+  htmlwidgets (>= 1.5.1),
+  htmltools (>= 0.5.0),
+  methods,
+  utils

@@ -6,7 +6,6 @@ NULL
 #' Download button appears on hover in top right.
 #'
 #' @param plot A \code{ggplot2} object or a function or reactive that generates a plot.
-#' @param title Text for plotly tooltip.
 #' @inheritParams hiddenDownload
 #' @param ... additional named arguments passed to \code{renderPlot}.
 #' @seealso \code{\link{downloadablePlotUI}}, \code{\link{renderPlot}}.
@@ -34,7 +33,7 @@ NULL
 #'              content = function(file) {write.csv(iris, file)})
 #' }
 #'
-#' shinyApp(ui, server)
+#' \dontrun{shinyApp(ui, server)}
 #'
 #'
 downloadablePlot <- function(input, output, session, plot, filename, content, ...) {
@@ -42,7 +41,7 @@ downloadablePlot <- function(input, output, session, plot, filename, content, ..
 
   # make plot a reactive
   plot_fun <- reactive({
-    if (is(plot, c('function', 'reactive'))) plot <- plot()
+    if (methods::is(plot, c('function', 'reactive'))) plot <- plot()
     return(plot)
   })
 
@@ -71,7 +70,7 @@ downloadablePlot <- function(input, output, session, plot, filename, content, ..
 #'
 #' @param id id string that gets namespaced by \code{shiny::NS}.
 #' @param title Text to display on hover of download button.
-#' @param ... Named arguments passed to \code{plotOutput}.
+#' @inheritParams shiny::plotOutput
 #' @export
 #' @seealso \code{\link[shiny]{NS}}, \code{\link{downloadablePlot}}, \code{\link{plotOutput}}
 #'

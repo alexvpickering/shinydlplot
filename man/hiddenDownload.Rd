@@ -7,7 +7,7 @@
 hiddenDownload(input, output, session, check, filename, content)
 }
 \arguments{
-\item{input, }{output, session standard \code{shiny} boilerplate.}
+\item{input, output, session}{standard \code{shiny} boilerplate.}
 
 \item{check}{reactive value to trigger download.}
 

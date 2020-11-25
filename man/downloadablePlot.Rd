@@ -7,7 +7,11 @@
 downloadablePlot(input, output, session, plot, filename, content, ...)
 }
 \arguments{
-\item{input}{output, session standard \code{shiny} boilerplate.}
+\item{input}{standard \code{shiny} boilerplate.}
+
+\item{output}{standard \code{shiny} boilerplate.}
+
+\item{session}{standard \code{shiny} boilerplate.}
 
 \item{plot}{A \code{ggplot2} object or a function or reactive that generates a plot.}
 
@@ -22,8 +26,6 @@ that file path. (Reactive values and functions may be used from this
 function.)}
 
 \item{...}{additional named arguments passed to \code{renderPlot}.}
-
-\item{title}{Text for plotly tooltip.}
 }
 \description{
 Download button appears on hover in top right.
@@ -48,7 +50,7 @@ server <- function(input, output, session) {
              content = function(file) {write.csv(iris, file)})
 }
 
-shinyApp(ui, server)
+\dontrun{shinyApp(ui, server)}
 
 
 }
