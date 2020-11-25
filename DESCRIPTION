@@ -1,9 +1,9 @@
 Package: shinydlplot
 Type: Package
 Title: Add a Download Button to a Shiny Plot or Plotly
-Version: 0.1.1
+Version: 0.1.2
 Author: Alex Pickering
-Maintainer: Alex Pickering <alexpickering@gmail.com>
+Maintainer: Alex Pickering <alexvpickering@gmail.com>
 Description: Add a download button to a shiny plot or plotly that appears when
   the plot is hovered. A tooltip, styled to resemble plotly buttons, is displayed 
   on hover of the download button. The download button can be used to allow users
