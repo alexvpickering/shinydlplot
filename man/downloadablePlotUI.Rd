@@ -32,6 +32,9 @@ must be specified in \code{renderPlot()}. Note that, for height, using
 \code{"auto"} or \code{"100\%"} generally will not work as expected,
 because of how height is computed with HTML/CSS.}
 }
+\value{
+an HTML tag object corresponding to the UI for \code{downloadablePlot}.
+}
 \description{
 UI for plot with download data button
 }

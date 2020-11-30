@@ -27,6 +27,9 @@ function.)}
 
 \item{...}{additional named arguments passed to \code{renderPlot}.}
 }
+\value{
+No return value, called to generate server logic.
+}
 \description{
 Download button appears on hover in top right.
 }
@@ -35,10 +38,12 @@ library(shiny)
 library(shinyjs)
 library(shinydlplot)
 library(ggplot2)
+
 ui <- fluidPage(
   useShinyjs(),
   downloadablePlotUI(id = 'iris_plot')
 )
+
 server <- function(input, output, session) {
 
   plot <- ggplot(iris, aes(x = Sepal.Length, y = Petal.Length)) + geom_point()

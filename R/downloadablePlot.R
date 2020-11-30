@@ -8,6 +8,8 @@ NULL
 #' @param plot A \code{ggplot2} object or a function or reactive that generates a plot.
 #' @inheritParams hiddenDownload
 #' @param ... additional named arguments passed to \code{renderPlot}.
+#'
+#' @return No return value, called to generate server logic.
 #' @seealso \code{\link{downloadablePlotUI}}, \code{\link{renderPlot}}.
 #' @export
 #'
@@ -16,12 +18,12 @@ NULL
 #' library(shinyjs)
 #' library(shinydlplot)
 #' library(ggplot2)
-
+#'
 #' ui <- fluidPage(
 #'   useShinyjs(),
 #'   downloadablePlotUI(id = 'iris_plot')
 #' )
-
+#'
 #' server <- function(input, output, session) {
 #'
 #'   plot <- ggplot(iris, aes(x = Sepal.Length, y = Petal.Length)) + geom_point()
@@ -71,8 +73,10 @@ downloadablePlot <- function(input, output, session, plot, filename, content, ..
 #' @param id id string that gets namespaced by \code{shiny::NS}.
 #' @param title Text to display on hover of download button.
 #' @inheritParams shiny::plotOutput
-#' @export
+#'
+#' @return an HTML tag object corresponding to the UI for \code{downloadablePlot}.
 #' @seealso \code{\link[shiny]{NS}}, \code{\link{downloadablePlot}}, \code{\link{plotOutput}}
+#' @export
 #'
 #'
 downloadablePlotUI <- function(id, title = 'Download plot data', width = '100%', height = '400px') {

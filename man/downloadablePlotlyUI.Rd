@@ -24,6 +24,9 @@ height is computed with HTML/CSS.}
 \item{inline}{use an inline (\code{span()}) or block container
 (\code{div()}) for the output}
 }
+\value{
+an HTML tag object corresponding to the UI for \code{downloadablePlotly}.
+}
 \description{
 UI for plotly with download data button in modebar
 }

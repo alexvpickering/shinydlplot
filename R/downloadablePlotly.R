@@ -2,8 +2,10 @@
 #'
 #' @param id id string that gets namespaced by \code{shiny::NS}.
 #' @inheritParams plotly::plotlyOutput
-#' @export
+#'
+#' @return an HTML tag object corresponding to the UI for \code{downloadablePlotly}.
 #' @seealso \code{\link[shiny]{NS}}, \code{\link{downloadablePlotly}}
+#' @export
 #'
 #' @examples
 #' library(shiny)
@@ -44,6 +46,8 @@ downloadablePlotlyUI <- function(id, width = '100%', height = 'auto', inline = F
 #' @param plot Object of class \code{'plotly'} or a function or reactive that generates one.
 #' @param title Text for plotly tooltip.
 #' @inheritParams hiddenDownload
+#'
+#' @return  No return value, called to generate server logic.
 #' @seealso \code{\link{downloadablePlotlyUI}}
 #' @export
 #'

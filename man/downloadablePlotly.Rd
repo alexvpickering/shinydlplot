@@ -35,6 +35,9 @@ function.)}
 
 \item{title}{Text for plotly tooltip.}
 }
+\value{
+No return value, called to generate server logic.
+}
 \description{
 Server-side logic for plotly with download data button in modebar
 }

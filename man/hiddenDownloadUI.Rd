@@ -9,6 +9,9 @@ hiddenDownloadUI(id)
 \arguments{
 \item{id}{id string to be namespaced.}
 }
+\value{
+a shiny.tag used to create a hidden download link.
+}
 \description{
 UI for hidden download link
 }

@@ -1,6 +1,8 @@
 #' UI for hidden download link
 #' @param id id string to be namespaced.
 #' @export
+#'
+#' @return a shiny.tag used to create a hidden download link.
 #' @seealso \code{\link[shiny]{NS}}, \code{\link{hiddenDownload}}
 #' @keywords internal
 #'
@@ -15,8 +17,9 @@ hiddenDownloadUI <- function(id) {
 #' @param input,output,session standard \code{shiny} boilerplate.
 #' @inheritParams shiny::downloadHandler
 #'
-#' @export
+#' @return No return value, called to generate logic for hidden download link.
 #' @seealso \code{\link{hiddenDownload}}
+#' @export
 #' @keywords internal
 hiddenDownload <- function(input, output, session, check, filename, content) {
 

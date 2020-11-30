@@ -21,6 +21,9 @@ file path (string) of a nonexistent temp file, and writes the content to
 that file path. (Reactive values and functions may be used from this
 function.)}
 }
+\value{
+No return value, called to generate logic for hidden download link.
+}
 \description{
 Logic for hidden download link
 }
