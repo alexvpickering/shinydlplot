@@ -8,7 +8,8 @@ downloadablePlotUI(
   id,
   title = "Download plot data",
   width = "100\%",
-  height = "400px"
+  height = "400px",
+  zoom = FALSE
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ ignored when \code{inline = TRUE}, in which case the width/height of a plot
 must be specified in \code{renderPlot()}. Note that, for height, using
 \code{"auto"} or \code{"100\%"} generally will not work as expected,
 because of how height is computed with HTML/CSS.}
+
+\item{zoom}{if \code{TRUE} brush then double-click to zoom.}
 }
 \value{
 an HTML tag object corresponding to the UI for \code{downloadablePlot}.

@@ -84,7 +84,7 @@ downloadablePlot <- function(input, output, session, plot, filename, content, ..
     plot <- plot_fun()
 
     plot +
-      coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
+      ggplot2::coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
   }, ...)
 
 }
