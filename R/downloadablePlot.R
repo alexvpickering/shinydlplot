@@ -81,11 +81,10 @@ downloadablePlot <- function(input, output, session, plot, filename, content, ..
   )
 
   output$dl_plot <- renderPlot({
-    plot <- plot_fun()
-
-    plot +
-      ggplot2::coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
+    plot_fun()
   }, ...)
+
+  return(ranges)
 
 }
 
