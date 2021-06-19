@@ -56,6 +56,23 @@ downloadablePlot <- function(input, output, session, plot, filename, content, ..
     shinyjs::toggleClass('download_container', class = 'visible-plot', condition = downloadable())
   })
 
+  # zoomable plot
+  ranges <- reactiveValues(x = NULL, y = NULL)
+
+  # When a double-click happens, check if there's a brush on the plot.
+  # If so, zoom to the brush bounds; if not, reset the zoom.
+  observeEvent(input$plot_dblclick, {
+      brush <- input$plot_brush
+      if (!is.null(brush)) {
+        ranges$x <- c(brush$xmin, brush$xmax)
+        ranges$y <- c(brush$ymin, brush$ymax)
+
+      } else {
+        ranges$x <- NULL
+        ranges$y <- NULL
+      }
+  })
+
 
   # click download
   output$download <- downloadHandler(
@@ -64,14 +81,19 @@ downloadablePlot <- function(input, output, session, plot, filename, content, ..
   )
 
   output$dl_plot <- renderPlot({
-    plot_fun()
+    plot <- plot_fun()
+
+    plot +
+      coord_cartesian(xlim = ranges$x, ylim = ranges$y, expand = FALSE)
   }, ...)
+
 }
 
 #' UI for plot with download data button
 #'
 #' @param id id string that gets namespaced by \code{shiny::NS}.
 #' @param title Text to display on hover of download button.
+#' @param zoom if \code{TRUE} brush then double-click to zoom.
 #' @inheritParams shiny::plotOutput
 #'
 #' @return an HTML tag object corresponding to the UI for \code{downloadablePlot}.
@@ -79,9 +101,14 @@ downloadablePlot <- function(input, output, session, plot, filename, content, ..
 #' @export
 #'
 #'
-downloadablePlotUI <- function(id, title = 'Download plot data', width = '100%', height = '400px') {
+downloadablePlotUI <- function(id, title = 'Download plot data', width = '100%', height = '400px', zoom = FALSE) {
   ns <- NS(id)
 
+  brush <- dblclick <- NULL
+  if (zoom) {
+    brush <- list(id = ns('plot_brush'), resetOnNew = TRUE)
+    dblclick <- ns('plot_dblclick')
+  }
 
   res <- div(class = 'downloadable-plot', id = ns('plot_container'),
       div(class = 'clearfix',
@@ -90,7 +117,7 @@ downloadablePlotUI <- function(id, title = 'Download plot data', width = '100%',
             downloadButton(ns('download'), label = NULL, icon = icon('download', 'fa-fw')),
           )
       ),
-      plotOutput(ns('dl_plot'), width = width, height = height),
+      plotOutput(ns('dl_plot'), width = width, height = height, brush = brush, dblclick = dblclick),
       shinyBS::bsTooltip(
         ns('download'),
         title,
