@@ -61,7 +61,7 @@ downloadablePlotly <- function(input, output, session, plot, filename, content, 
 
   # make plot a reactive
   plotly_fun <- reactive({
-    if (methods::is(plot, c('function', 'reactive'))) plot <- plot()
+    if (methods::is(plot, 'function') | methods::is(plot, 'reactive')) plot <- plot()
     return(plot)
   })
 
