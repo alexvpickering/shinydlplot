@@ -1,7 +1,7 @@
 Package: shinydlplot
 Type: Package
 Title: Add a Download Button to a 'shiny' Plot or 'plotly'
-Version: 0.1.3
+Version: 0.1.4
 Author: Alex Pickering
 Maintainer: Alex Pickering <alexvpickering@gmail.com>
 Description: Add a download button to a 'shiny' plot or 'plotly' that appears when
