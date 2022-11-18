@@ -10,7 +10,6 @@ Description: Add a download button to a 'shiny' plot or 'plotly' that appears wh
   to download the dataset used for a plot.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 7.2.2
 Suggests:
   ggplot2 (>= 3.3.2)
