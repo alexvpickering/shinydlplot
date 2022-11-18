@@ -7,11 +7,7 @@
 downloadablePlot(input, output, session, plot, filename, content, ...)
 }
 \arguments{
-\item{input}{standard \code{shiny} boilerplate.}
-
-\item{output}{standard \code{shiny} boilerplate.}
-
-\item{session}{standard \code{shiny} boilerplate.}
+\item{input, output, session}{standard \code{shiny} boilerplate.}
 
 \item{plot}{A \code{ggplot2} object or a function or reactive that generates a plot.}
 

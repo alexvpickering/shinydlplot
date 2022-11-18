@@ -9,13 +9,7 @@ downloadablePlotlyUI(id, width = "100\%", height = "auto", inline = FALSE)
 \arguments{
 \item{id}{id string that gets namespaced by \code{shiny::NS}.}
 
-\item{width}{Must be a valid CSS unit (like \code{"100\%"},
-\code{"400px"}, \code{"auto"}) or a number, which will be coerced to a
-string and have \code{"px"} appended. Note that, for height, using "auto"
-or "100\%" generally will not work as expected, because of how
-height is computed with HTML/CSS.}
-
-\item{height}{Must be a valid CSS unit (like \code{"100\%"},
+\item{width, height}{Must be a valid CSS unit (like \code{"100\%"},
 \code{"400px"}, \code{"auto"}) or a number, which will be coerced to a
 string and have \code{"px"} appended. Note that, for height, using "auto"
 or "100\%" generally will not work as expected, because of how

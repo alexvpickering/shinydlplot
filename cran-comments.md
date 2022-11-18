@@ -1,16 +1,9 @@
 ## Test environments
-* local Fedora install, R 4.0.2
+* local Ubuntu 22.04 install, R 4.2.1
 * win-builder (devel and release)
 
 ## R CMD check results
-There were no ERRORs or WARNINGs.
-
-There was 1 NOTE:
-
-* checking CRAN incoming feasibility ... NOTE                                                            
-Maintainer: ‘Alex Pickering <alexvpickering@gmail.com>’
-
-New submission
+There were no ERRORs or WARNINGs or NOTES.
 
 ## Downstream dependencies
 
